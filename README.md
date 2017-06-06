@@ -2,10 +2,12 @@
 一些mysql常用的操作
 
 #创建用户
+
+#登录
 mysql -uroot -p
 
 #输入密码
-use mysql
+***
 
 #在root用户下操作
 create user'name'@'localhost'identified by'密码';
@@ -23,7 +25,7 @@ flush privileges;
 grant select,insert,update,delete on databasename.* to user@localhost identified by “密码″;
 flush privileges;
 
-#修改密码
+#修改密码 ,在root用户下，可以修改root密码
 update mysql.user set password=password(’密码′) where User=’username′ and Host=’localhost’;
 flush privileges;
 
@@ -41,7 +43,12 @@ drop user 用户名@‘localhost’
 
 
 
+查看MYSQL数据库中所有用户及拥有权限
 
+查看MYSQL数据库中所有用户
+ SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;
+查看数据库中具体某个用户的权限
+mysql> show grants for 'cactiuser'@'%';   
 
 
 
